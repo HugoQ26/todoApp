@@ -25,7 +25,6 @@ io.on('connection', socket => {
 
   socket.on('removeTask', id => {
     tasks = tasks.filter(task => task.id != id);
-
     io.emit('updateData', tasks);
   });
 

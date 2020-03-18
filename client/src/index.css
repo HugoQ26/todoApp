@@ -81,6 +81,11 @@ p {
   border-bottom: 1px dashed rgb(83, 83, 83);
 }
 
-#modify-task-section {
+.modify-task-section {
   flex: 0 0 100%;
+  display: none;
+}
+
+.modify-task-section.show {
+  display: block;
 }

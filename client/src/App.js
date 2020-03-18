@@ -43,8 +43,11 @@ class App extends React.Component {
 
   editTask(event, id, text) {
     event.preventDefault();
-    this.socket.emit('editTask', { id, text });
-    this.setState({ editedText: '', showEdit: !this.state.showEdit });
+    if (text.length) {
+      this.socket.emit('editTask', { id, text });
+      this.setState({ editedText: '', showEdit: !this.state.showEdit });
+    }
+    this.setState({ showEdit: !this.state.showEdit });
   }
 
   render() {
@@ -61,10 +64,15 @@ class App extends React.Component {
           <ul className="tasks-section__list" id="tasks-list">
             {tasks.map(({ id, name }, index) => (
               <li className="task" key={id}>
-                {name}
+                {index + 1}: {name}
                 <div>
                   <button
-                    onClick={e => this.removeTask(e, id)}
+                    onClick={e =>
+                      this.setState({
+                        showEdit: !this.state.showEdit,
+                        index: index,
+                      })
+                    }
                     className="btn btn--yellow"
                   >
                     Change
@@ -76,21 +84,24 @@ class App extends React.Component {
                     Remove
                   </button>
                 </div>
-                <div id="modify-task-section">
-                  <input
-                    value={this.state.editedText}
-                    onChange={e => this.handleModifyChange(e)}
-                    className="text-input"
-                    type="text"
-                    id="edit-task-input"
-                  />
-                  <button
-                    onClick={e => this.editTask(e, id, editedText)}
-                    className="btn btn--green"
-                  >
-                    Confirm
-                  </button>
-                </div>
+                {index == this.state.index && this.state.showEdit && (
+                  <div>
+                    <input
+                      value={this.state.editedText}
+                      onChange={e => this.handleModifyChange(e)}
+                      className="text-input"
+                      placeholder="Retype todo name"
+                      type="text"
+                      id="edit-task-input"
+                    />
+                    <button
+                      onClick={e => this.editTask(e, id, editedText)}
+                      className="btn btn--green"
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
