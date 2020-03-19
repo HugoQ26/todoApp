@@ -63,7 +63,7 @@ class App extends React.Component {
 
           <ul className="tasks-section__list" id="tasks-list">
             {tasks.map(({ id, name }, index) => (
-              <li className="task" key={id}>
+              <li className="task fade-in" key={id}>
                 {index + 1}: {name}
                 <div>
                   <button
@@ -84,7 +84,7 @@ class App extends React.Component {
                     Remove
                   </button>
                 </div>
-                {index == this.state.index && this.state.showEdit && (
+                {index === this.state.index && this.state.showEdit && (
                   <div>
                     <input
                       value={this.state.editedText}

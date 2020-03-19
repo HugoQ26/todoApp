@@ -6,6 +6,18 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 8000;
 
+app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
+
+app.use((req, res) => {
+  res.status(404).send('You typed wrong address');
+});
+
 const server = app.listen(PORT, () => {
   console.log('Server is listening on port ' + PORT);
 });
