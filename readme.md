@@ -1,13 +1,27 @@
-# ToDo List app with React.js and Socket.io
+# Todo app
 
-Simple Todo app made to learn how to connect and use socket.io with react and node server
+### Tech stack: Node.js, Express.js, Socket.io, React.js
 
-## Installation
+### The idea was:
+
+1. to make simple TODO list app
+2. use socket.io
+3. use React
+
+Not yet deployed.
+
+### Installation
 
 First clone repo.
-Next:
-`npm install` on root folder and then `npm install` in /client folder.
-And then run in root folder:
-`npm run dev`
+
+Next in root folder:
+
+`npm run inst_dep` - this will install all dependencies , both client and server side.
+
+And then run:
+
+`npm run dev` - this will start Node server and React app concurrently.
+
 And in the browser:
-`http://localhost:3000`
+
+`http://localhost:3000/`
